@@ -5,8 +5,7 @@ public:
         if(b == 0) {
             return 1;
         }
-
-        long long half = findpower(a , b / 2);
+        long long half = findpower(a,b/2);
         long long result = half * half % M;
         if(b % 2 != 0) {
             result = (result * a) % M;
@@ -14,6 +13,6 @@ public:
         return result;
     }
     int countGoodNumbers(long long n) {
-        return (long long)findpower(5,(n + 1) / 2) * findpower(4,n / 2) % M;
+        return (long long)findpower(5,(n+1)/2) * findpower(4,n/2) % M;
     }
 };
