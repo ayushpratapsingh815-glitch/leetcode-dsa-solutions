@@ -1,11 +1,12 @@
 class Solution {
 public:
-    int Atmostk(vector<int>& nums, int k) {
+    int AtmostK(vector<int>& nums, int k) {
         unordered_map<int,int> mp;
-        int count = 0;
-        int right = 0;
+        int n = nums.size();
         int left = 0;
-        while(right < nums.size()) {
+        int right = 0;
+        int count = 0;
+        while(right < n) {
             mp[nums[right]]++;
             while(mp.size() > k) {
                 mp[nums[left]]--;
@@ -20,6 +21,6 @@ public:
         return count;
     }
     int subarraysWithKDistinct(vector<int>& nums, int k) {
-        return Atmostk(nums,k) - Atmostk(nums,k-1);
+        return AtmostK(nums,k) - AtmostK(nums,k-1);
     }
 };
