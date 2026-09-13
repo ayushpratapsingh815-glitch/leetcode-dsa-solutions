@@ -10,33 +10,32 @@
  */
 class Solution {
 public:
-    ListNode* mergetwo(ListNode* lists1,ListNode* lists2) {
-        if(lists1 == nullptr && lists2 == nullptr) {
+    ListNode* mergetwo(ListNode* list1,ListNode* list2) {
+        if(list1 == nullptr && list2 == nullptr) {
             return nullptr;
         }
-        if(lists1 == nullptr) {
-            return lists2;
+        if(list1 == nullptr) {
+            return list2;
         }
-        if(lists2 == nullptr) {
-            return lists1;
+        if(list2 == nullptr) {
+            return list1;
         }
-
-        ListNode* temp1 = lists1;
-        ListNode* temp2 = lists2;
+        ListNode* temp1 = list1;
+        ListNode* temp2 = list2;
         if(temp1->val <= temp2->val) {
             temp1->next = mergetwo(temp1->next,temp2);
-            return temp1;
+            return list1;
         } else {
             temp2->next = mergetwo(temp1,temp2->next);
-            return temp2;
+            return list2;
         }
     }
     ListNode* partition(int st,int ed,vector<ListNode*>& lists) {
-        if(st == ed) {
+        if(st >= ed) {
             return lists[st];
         }
-        if(st >= ed) {
-            return nullptr;
+        if(st == ed) {
+            return lists[st];
         }
         int mid = st + (ed - st) / 2;
         ListNode* part1 = partition(st,mid,lists);
