@@ -16,16 +16,25 @@ public:
         if(root == nullptr) {
             return ans;
         }
-        vector<int> left = postorderTraversal(root->left);
-        for(int x : left) {
-            ans.push_back(x);
-        }
-        vector<int> right = postorderTraversal(root->right);
-        for(int x : right) {
-            ans.push_back(x);
+        stack<TreeNode*> s1;
+        stack<TreeNode*> s2;
+        s1.push(root);
+        while(!s1.empty()) {
+            TreeNode* curr = s1.top();
+            s1.pop();
+            s2.push(curr);
+            if(curr->left != nullptr) {
+                s1.push(curr->left);
+            }
+            if(curr->right != nullptr) {
+                s1.push(curr->right);
+            }
         }
         
-        ans.push_back(root->val);
+        while(!s2.empty()) {
+            ans.push_back(s2.top()->val);
+            s2.pop();
+        }
         return ans;
     }
 };
