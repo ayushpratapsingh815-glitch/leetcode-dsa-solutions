@@ -11,8 +11,9 @@ class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if(root == nullptr) {
-            return nullptr;
+            return root;
         }
+
         if(root == p || root == q) {
             return root;
         }
@@ -22,11 +23,11 @@ public:
 
         if(leftlca == nullptr) {
             return rightlca;
-
         }
         if(rightlca == nullptr) {
             return leftlca;
         }
+
         return root;
     }
 };
